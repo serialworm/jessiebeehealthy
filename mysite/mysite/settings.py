@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+PROJECT_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), ".."),
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -37,6 +40,15 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'djangobower',
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(PROJECT_ROOT, 'components')
+
+BOWER_INSTALLED_APPS = (
+    'jquery#1.11',
+    'underscore',
+    'bootstrap',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,5 +92,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+STATICFILES_FINDERS = (
+    'djangobower.finders.BowerFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 STATIC_URL = '/static/'
