@@ -1,9 +1,7 @@
 jessiebeehealthy
 ================
 
-Jessie Bee Healthy Blog
-
-A simple Django blog.
+A simple Django blog site.
 
 ```
 python3 manage.py migrate
