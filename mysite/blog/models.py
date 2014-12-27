@@ -1,8 +1,10 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Page(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    url = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField()
 
@@ -39,7 +41,7 @@ class Author(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = RichTextField()
     pub_date = models.DateTimeField('date published')
     category = models.ForeignKey(Category)
     author = models.ForeignKey(Author, default=1)
