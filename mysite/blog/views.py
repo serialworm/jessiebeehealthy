@@ -3,9 +3,7 @@ from blog.models import Category, Page, Post
 
 
 def index(request):
-    page = Page.objects.get(name='home')
-    print('page: ')
-    print(page)
+    page = Page.objects.get(slug='home')
     title = page.title
     description = page.description
     posts = Post.objects.all()

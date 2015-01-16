@@ -3,8 +3,7 @@ from ckeditor.fields import RichTextField
 
 
 class Page(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    url = models.CharField(max_length=200)
+    slug = models.CharField(max_length=50, unique=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
 
@@ -16,13 +15,15 @@ class Page(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    slug = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         verbose_name_plural = 'categories'
